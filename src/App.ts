@@ -3,8 +3,13 @@ import * as cp from "child_process";
 let counter = 0;
 
 const child = cp.spawn("./external-command/sample-json", {});
-child.on("exit", () => {
-    console.log("Will disconnect external command...");
+child.on("exit", code => {
+    if (code){
+        console.log(`External program exited with code: ${code}`);
+    }
+    else {
+        console.log("Could not receive an exit code (may be killed by us?).");
+    }
 });
 child.stdout.on("data", listener => {
     const data = listener.toString();
