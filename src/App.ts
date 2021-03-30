@@ -2,7 +2,7 @@ import * as cp from "child_process";
 
 let counter = 0;
 
-const child = cp.spawn("./external-command/sample-json", {});
+const child = cp.spawn("./external-command/sensor-json", {});
 child.on("exit", code => {
     if (code){
         console.log(`External program exited with code: ${code}`);
